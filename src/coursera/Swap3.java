@@ -22,8 +22,11 @@ class Swap3 {
         /*******************************************
          * Completez le programme a partir d'ici.
          *******************************************/
-
-
+        
+        int temp = a;
+        a = c;
+        c = b;
+        b = temp;
 
         /*******************************************
          * Ne rien modifier apres cette ligne.
