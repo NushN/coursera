@@ -2,11 +2,13 @@ package coursera;
 /*******************************************
  * Completez le programme a partir d'ici.
  *******************************************/
+import java.util.ArrayList;
+
 class Piece {
-    private String nom = "";
-    public Piece (String nom) { this.nom = nom; }
-    public String getNom() { return this.nom; }
-    public String toString () { return this.nom; }
+    private String name = "";
+    public Piece (String name) { this.name = name; }
+    public String getNom() { return this.name; }
+    public String toString () { return this.name; }
     
 }
 
@@ -21,28 +23,44 @@ class Composant {
     public int getQuantite() { return this.num; }
 }
 
-class Simple {
-    private String nameSimple = "";
+class Simple extends Piece {
     private String orientation = "aucune";
 
     public Simple (String nameSimple, String orientation){
-	this.nameSimple = nameSimple;
+	super(nameSimple);
 	this.orientation = orientation;
     }
     public Simple (String nameSimple){
-	this.nameSimple = nameSimple;
+	super(nameSimple);
     }
     
     public String getOrientation() { return this.orientation; }
     public String toString() {
-	String res = this.nameSimple;
+	String res = this.getNom(); // this or super?
 	if (!this.orientation.equals("aucune")) { res += " " + this.orientation; }
 	return res;
     }
 }
 
-class Composee{
-	
+class Composee extends Piece {
+    private int countMax = 0;
+    private ArrayList <Piece> construirePieces = new ArrayList<Piece>();
+    public Composee (String name, int countMax){
+	super(name);
+	this.countMax = countMax;
+    }
+    
+    public int taille() { return this.construirePieces.size(); }
+    public int tailleMax() { return this.countMax; }
+    public void construire(Piece piece) {
+	int currentCount = this.construirePieces.size();
+	if (currentCount >= this.countMax) {
+	    System.out.println("Construction impossible");
+	}
+	else {
+	    this.construirePieces.add(piece);
+	}
+    }
 }
 /*******************************************
  * Ne rien modifier apres cette ligne.
